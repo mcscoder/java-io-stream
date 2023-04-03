@@ -879,3 +879,170 @@ public class FileOutputStreamDemo {
 - To close the file output stream, we can use the `close()` method. Once the method is called, we cannot use the methods of `FileOutputStream`
 
 </details>
+
+## 3.1. Java BufferedInputStream Class
+
+<details><summary>Create a BufferedInputStream</summary>
+
+```java
+// Creates a FileInputStream
+FileInputStream file = new FileInputStream(String path);
+
+// Creates a BufferedInputStream
+BufferedInputStream buffer = new BufferInputStream(file);
+```
+
+- Here, the internal buffer has the default size of 8192 bytes. We can specify the size of internal buffer as well
+
+```java
+// Creates a BufferedInputStream with specified size internal buffer
+BufferedInputStream buffer = new BufferInputStream(file, int size);
+```
+
+</details>
+
+<details><summary>Methods of BufferedInputStream</summary>ss.
+
+Method | Description
+--- | ---
+`read()` | reads a single byte from the input stream
+`read(byte[] arr)` | reads bytes from the stream and stores in the specified array
+`read(byte[] arr, int start, int length)` | reads the number of bytes equal to the length from the stream and stores in the specified array starting from the position start
+
+### Example:
+
+#### input.txt
+
+```
+This is a line of text inside the file.
+```
+
+#### BufferedInputStreamDemo.java
+
+```java
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
+public class BufferedInputStreamDemo {
+    public static void main(String[] args) {
+        try {
+
+            // Creates a FileInputStream
+            FileInputStream file = new FileInputStream("input.txt");
+
+            // Creates a BufferedInputStream
+            BufferedInputStream input = new BufferedInputStream(file);
+
+            // Reads first byte from file
+            int i = input.read();
+
+            while (i != -1) {
+                System.out.print((char) i);
+
+                // Reads next byte from the file
+                i = input.read();
+            }
+            input.close();
+        }
+
+        catch (Exception e) {
+            e.getStackTrace();
+        }
+    }
+}
+
+```
+
+#### output.txt
+
+```
+This is a line of text inside the file.
+```
+
+</details>
+
+## 3.2. Java BufferedOutputStream Class
+
+<details><summary>Create a BufferedOutputStream</summary>
+
+```java
+// Creates a FileOutputStream
+FileOutputStream file = new FileOutputStream(String path);
+
+// Creates a BufferedOutputStream
+BufferedOutputStream buffer = new BufferOutputStream(file);
+```
+
+- Here, the internal buffer has the default size of 8192 bytes. We can specify the size of the internal buffer as well.
+
+```java
+// Creates a BufferedOutputStream with specified size internal buffer
+BufferedOutputStream buffer = new BufferOutputStream(file, int size);
+```
+
+</details>
+
+
+<details><summary>Methods of BufferedOutputStream</summary>
+
+Method | Description
+--- | ---
+`write()` | writes a single byte to the internal buffer of the output stream
+`write(byte[] array)` | writes the bytes from the specified array to the output stream
+`write(byte[] arr, int start, int length)` | writes the number of bytes equal to length to the output stream from an array starting from the position start
+
+
+### Example: 
+
+#### BufferedOutputStreamDemo.java
+
+```java
+import java.io.FileOutputStream;
+import java.io.BufferedOutputStream;
+
+public class BufferedOutputStreamDemo {
+    public static void main(String[] args) {
+
+        String data = "This is a line of text inside the file";
+
+        try {
+            // Creates a FileOutputStream
+            FileOutputStream file = new FileOutputStream("output.txt");
+
+            // Creates a BufferedOutputStream
+            BufferedOutputStream output = new BufferedOutputStream(file);
+
+            byte[] array = data.getBytes();
+
+            // Writes data to the output stream
+            output.write(array);
+            output.close();
+        }
+
+        catch (Exception e) {
+            e.getStackTrace();
+        }
+    }
+}
+```
+
+#### output.txt
+
+```
+This is a line of text inside the file.
+```
+
+</details>
+
+<details><summary>flush() Method</summary>
+
+- Like `FileOutputStream`, `BufferedOutputStream` also have `flush()` method with the same functionality.
+
+</details>
+
+
+<details><summary>close() Method</summary>
+
+- To close the buffered output stream, we can use the close() method. Once the method is called, we cannot use the output stream to write the data.
+
+</details>

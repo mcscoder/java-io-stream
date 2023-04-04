@@ -1046,3 +1046,180 @@ This is a line of text inside the file.
 - To close the buffered output stream, we can use the close() method. Once the method is called, we cannot use the output stream to write the data.
 
 </details>
+
+## 4.1. Java Reader Class
+
+<details><summary>Subclasses of Reader</summary>
+
+- In order to use the functionality of `Reader`, we must use its subclasses.
+
+- Some of them are:
+    - BufferedReader
+    - InputStreamReader
+    - FileReader
+    - StringReader
+
+</details>
+
+<details><summary>Create a Reader</summary>
+
+- `Reader` is an abstract class. Hence we cannot create an object of `Reader`
+
+```java
+// Creates a Reader
+Reader input = new FileReader();
+```
+
+</details>
+
+<details><summary>Methods of Reader</summary>
+
+Method | Description
+--- | ---
+`ready()` | checks if the reader is ready to be read
+`read(char[] array)` | reads the characters from the stream and stores in the specified array
+`read(char[] array, int start, int length)` | reads the number of characters equal to length from the stream and stores in the specified array starting from the start
+`mark()` | marks the position in the stream up to which data has been read
+`reset()` | returns the control to the point in the stream where the mark is set
+`skip()` | discards the specified number of characters from the stream
+
+</details>
+
+<details><summary>Example</summary>
+
+- Reader using FileReader
+
+
+#### input.txt
+
+```
+This is a line of text inside the file.
+```
+
+#### FileReaderDemo
+
+```java
+import java.io.Reader;
+import java.io.FileReader;
+
+public class FileReaderDemo {
+    public static void main(String[] args) {
+
+        // Creates an array of character
+        char[] array = new char[100];
+
+        try {
+            // Creates a reader using the FileReader
+            Reader input = new FileReader("input.txt");
+
+            // Checks if reader is ready 
+            System.out.println("Is there data in the stream?  " + input.ready());
+
+            // Reads characters
+            input.read(array);
+            System.out.println("Data in the stream:");
+            System.out.println(array);
+
+            // Closes the reader
+            input.close();
+        }
+
+        catch(Exception e) {
+            e.getStackTrace();
+        }
+    }
+}
+```
+
+#### Output
+
+```
+Is there data in the stream?  true
+Data in the stream:
+This is a line of text inside the file.
+```
+
+</details>
+
+## 4.2. Java Writer Class
+
+<details><summary>Subclasses of Writer</summary>
+
+- In order to use the functionality of the `Writer`, we must use its subclasses
+
+- Some of them are:
+
+    - BufferedWriter
+
+    - OutputStreamWriter
+
+    - FileWriter
+
+    - StringWriter
+
+</details>
+
+<details><summary>Create a Writer</summary>
+
+- `Writer` is an abstract class. Hence we cannot create an object of `Writer`
+
+```java
+// Creates a Writer
+Writer output = new FileWriter();
+```
+
+</details>
+
+<details><summary>Methods of Writer</summary>
+
+Method | Description
+--- | ---
+`write(char[] array)` | writes the characters from the specified array to the output stream
+`write(String data)` | writes the specified string to the writer
+`append(char c)` | inserts the specified character to the current writer
+`flush()` | forces to write all the data present in the writer to the corresponding destination
+`close()` | closes the writer
+
+</details>
+
+<details><summary>Example</summary>
+
+- `Writer` using `FileWriter`
+
+#### FileWriterDemo.java
+
+```java
+import java.io.FileWriter;
+import java.io.Writer;
+
+public class FileWriterDemo {
+
+    public static void main(String args[]) {
+
+        String data = "This is the data in the output file";
+
+        try {
+            // Creates a Writer using FileWriter
+            Writer output = new FileWriter("output.txt");
+
+            // Writes string to the file
+            output.write(data);
+
+            // Closes the writer
+            output.close();
+        }
+
+        catch (Exception e) {
+            e.getStackTrace();
+        }
+    }
+}
+```
+
+#### output.txt
+
+```
+This is a line of text inside the file.
+```
+
+</details>

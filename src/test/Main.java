@@ -1,27 +1,20 @@
 package test;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FilterInputStream;
+import java.io.PrintStream;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
+
+        String data = "This is a text insidfdfde the file.";
+
         try {
-            
-            FilterInputStream filter = new BufferedInputStream(new FileInputStream("input.txt"));
+            PrintStream output = new PrintStream("output.txt");
 
-            byte[] data = new byte[filter.available()];
-            filter.read(data);
-
-            for(byte b : data) {
-                System.out.print((char) b);
-            }
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            output.print(data);
+            output.close();
         }
-
-        
+        catch(Exception e) {
+            e.getStackTrace();
+        }
     }
 }
